@@ -1,8 +1,17 @@
 #include <iostream>
-#include "Card.h"
+#include "Deck.h"
 
 int main() {
-    Card c{Suit::Spades, 10};
-    std::cout << "Test Card: " << c.toString() << "\n";
+    Deck deck;
+    deck.shuffle();
+
+    auto hand = deck.draw(5);
+
+    std::cout << "Drawn Hand:\n";
+    for (const auto& card : hand) {
+        std::cout << card.toString() << " ";
+    }
+
+    std::cout << "\n";
     return 0;
 }
