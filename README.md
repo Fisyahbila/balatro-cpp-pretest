@@ -1,1 +1,1 @@
-# tugas-design-pattern-balatro
+# balatro-cpp-pattern
