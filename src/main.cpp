@@ -1,6 +1,8 @@
 #include <iostream>
+#include "Card.h"
 
 int main() {
-    std::cout << "Pretest Balatro" << std::endl;
+    Card c{Suit::Spades, 10};
+    std::cout << "Test Card: " << c.toString() << "\n";
     return 0;
 }
