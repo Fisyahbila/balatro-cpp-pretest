@@ -2,6 +2,7 @@
 #include "Deck.h"
 #include "infusion/FlatEnhancer.h"
 #include "infusion/MultiplierAmplifier.h"
+#include "scoring/SumStrategy.h"
 
 int main() {
     Deck deck;
@@ -14,10 +15,8 @@ int main() {
         std::cout << card.toString() << " ";
     }
 
-    int score = 0;
-    for (const auto& card : hand) {
-        score += card.rank;
-    }
+    SumStrategy strategy;
+    int score = strategy.calculateScore(hand);
 
     std::cout << "\nBase Score: " << score << "\n";
 
