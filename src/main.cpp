@@ -3,6 +3,7 @@
 #include "infusion/FlatEnhancer.h"
 #include "infusion/MultiplierAmplifier.h"
 #include "scoring/SumStrategy.h"
+#include "infusion/InfusionChain.h"
 
 int main() {
     Deck deck;
@@ -14,18 +15,24 @@ int main() {
     for (const auto& card : hand) {
         std::cout << card.toString() << " ";
     }
+    std::cout << "\n";
 
     SumStrategy strategy;
-    int score = strategy.calculateScore(hand);
+    int baseScore = strategy.calculateScore(hand);
 
-    std::cout << "\nBase Score: " << score << "\n";
+    std::cout << "Base Score: " << baseScore << "\n";
 
     FlatEnhancer flat(10);
     MultiplierAmplifier multi(2);
 
-    int modifiedScore = flat.apply(score);
-    modifiedScore = multi.apply(modifiedScore);
+    InfusionChain chain;
 
-    std::cout << "After Infusion: " << modifiedScore << "\n";
+    chain.addInfusion(&flat);
+    chain.addInfusion(&multi);
+
+    int finalScore = chain.applyAll(baseScore);
+
+    std::cout << "Final Score: " << finalScore << "\n";
+
     return 0;
 }
