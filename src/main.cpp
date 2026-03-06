@@ -4,6 +4,7 @@
 #include "infusion/MultiplierAmplifier.h"
 #include "scoring/SumStrategy.h"
 #include "infusion/InfusionChain.h"
+#include "shop/ShopSystem.h"
 
 int main() {
     Deck deck;
@@ -33,6 +34,15 @@ int main() {
     int finalScore = chain.applyAll(baseScore);
 
     std::cout << "Final Score: " << finalScore << "\n";
+
+    ShopSystem shop;
+
+    IInfusion* bought = shop.openShop();
+
+    if (bought != nullptr){
+        chain.addInfusion(bought);
+        std::cout << "Infusion added to chain!\n";
+    }
 
     return 0;
 }
